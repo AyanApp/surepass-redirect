@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting to App...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #007BFF;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Redirecting to App...</h2>
+  <p>If you are not redirected automatically, tap the button below:</p>
+  <a id="openAppLink" class="btn" href="surepass_digiboost://aadhaar-callback">Open App</a>
+
+  <script>
+    // Try to open app after short delay
+    setTimeout(function () {
+      window.location.href = "surepass_digiboost://aadhaar-callback";
+    }, 500);
+  </script>
+</body>
+</html>
