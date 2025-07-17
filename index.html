@@ -16,16 +16,15 @@
   <p>If nothing happens, <a id="fallback" href="surepass_digiboost://aadhaar-callback">click here</a></p>
 
   <script>
-    // Simple redirect to your app's deep link
     const appUri = "surepass_digiboost://aadhaar-callback";
 
-    // Set fallback link just in case auto redirect fails
+    // Set fallback link just in case
     document.getElementById('fallback').href = appUri;
 
-    // Redirect after short delay
+    // Use replace() to prevent it from being treated as relative
     setTimeout(() => {
-      window.location.href = appUri;
-    }, 100); // 100ms delay
+      window.location.replace(appUri);
+    }, 100); // Delay is optional
   </script>
 </body>
 </html>
