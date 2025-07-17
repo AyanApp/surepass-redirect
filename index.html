@@ -1,28 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Redirecting...</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      padding-top: 50px;
-    }
-  </style>
-</head>
-<body>
-  <h2>Redirecting to your app...</h2>
-  <p>If nothing happens, <a id="fallback" href="#">click here</a></p>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <script>
+      const queryParams = new URLSearchParams(window.location.search);
+      const clientId = queryParams.get("client_id");
+      const appUri = `surepass_digiboost://aadhaar-callback?client_id=${clientId}`;
 
-  <script>
-    const queryParams = new URLSearchParams(window.location.search);
-    const txnId = queryParams.get("txnId");
-    const appUri = `surepass_digiboost://aadhaar-callback${txnId ? `?txnId=${txnId}` : ''}`;
-    document.getElementById('fallback').href = appUri;
-    setTimeout(() => {
-      window.location.href = appUri;
-    }, 100);
-  </script>
-</body>
+      setTimeout(() => {
+        window.location.href = appUri;
+      }, 100);
+    </script>
+  </head>
+  <body>
+    <h2>Redirecting back to the app...</h2>
+    <p>If not redirected, <a id="fallback" href="#">click here</a></p>
+    <script>
+      document.getElementById('fallback').href = `surepass_digiboost://aadhaar-callback?client_id=${clientId}`;
+    </script>
+  </body>
 </html>
