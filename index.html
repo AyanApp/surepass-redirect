@@ -13,19 +13,16 @@
 </head>
 <body>
   <h2>Redirecting to your app...</h2>
-  <p>If nothing happens, <a id="fallback" href="#">click here</a></p>
+  <p>If nothing happens, <a id="fallback" href="surepass_digiboost://aadhaar-callback">click here</a></p>
 
   <script>
-    const queryParams = new URLSearchParams(window.location.search);
-    const txnId = queryParams.get("txnId");
+    // Simple redirect to your app's deep link
+    const appUri = "surepass_digiboost://aadhaar-callback";
 
-    // Construct your app URI with txnId
-    const appUri = `surepass_digiboost://aadhaar-callback${txnId ? `?txnId=${txnId}` : ''}`;
-
-    // Set fallback link in case it doesn’t open automatically
+    // Set fallback link just in case auto redirect fails
     document.getElementById('fallback').href = appUri;
 
-    // Attempt redirect after short delay
+    // Redirect after short delay
     setTimeout(() => {
       window.location.href = appUri;
     }, 100); // 100ms delay
