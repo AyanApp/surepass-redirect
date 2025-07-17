@@ -13,18 +13,16 @@
 </head>
 <body>
   <h2>Redirecting to your app...</h2>
-  <p>If nothing happens, <a id="fallback" href="surepass_digiboost://aadhaar-callback">click here</a></p>
+  <p>If nothing happens, <a id="fallback" href="#">click here</a></p>
 
   <script>
-    const appUri = "surepass_digiboost://aadhaar-callback";
-
-    // Set fallback link just in case
+    const queryParams = new URLSearchParams(window.location.search);
+    const txnId = queryParams.get("txnId");
+    const appUri = `surepass_digiboost://aadhaar-callback${txnId ? `?txnId=${txnId}` : ''}`;
     document.getElementById('fallback').href = appUri;
-
-    // Use replace() to prevent it from being treated as relative
     setTimeout(() => {
-      window.location.replace(appUri);
-    }, 100); // Delay is optional
+      window.location.href = appUri;
+    }, 100);
   </script>
 </body>
 </html>
