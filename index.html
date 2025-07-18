@@ -1,21 +1,32 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Redirecting to app...</title>
-    <script type="text/javascript">
-      function openApp() {
-        window.location = 'surepass_digiboost://aadhaar-callback';
-      }
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Redirecting...</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <h2>Redirecting you back to the app...</h2>
+  <p>If nothing happens, <a id="fallbackLink" href="#">click here</a>.</p>
 
-      window.onload = function () {
-        setTimeout(function () {
-          openApp();
-        }, 1000);
-      };
-    </script>
-  </head>
-  <body>
-    <h2>Redirecting to the app...</h2>
-    <p>If nothing happens, <a href="javascript:openApp()">click here</a>.</p>
-  </body>
+  <script>
+    const deeplink = "surepass_digiboost://aadhaar-callback";
+
+    // Attempt automatic redirect
+    window.location.href = deeplink;
+
+    // Also set fallback link
+    document.getElementById('fallbackLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = deeplink;
+    });
+  </script>
+</body>
 </html>
