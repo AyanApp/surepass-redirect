@@ -3,29 +3,27 @@
   <head>
     <title>Redirecting to App...</title>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
+      function redirectToApp() {
+        const deeplink = "surepass_digiboost://aadhaar-callback";
+        window.location.href = deeplink;
+      }
+
       window.onload = function () {
-        const params = new URLSearchParams(window.location.search);
-        const clientId = params.get('client_id');
-        if (clientId) {
-          const appURL = `surepass_digiboost://aadhaar-callback?client_id=${clientId}`;
-
-          // Attempt to open the app via iframe to avoid 404 or browser errors
-          const iframe = document.createElement('iframe');
-          iframe.style.display = 'none';
-          iframe.src = appURL;
-          document.body.appendChild(iframe);
-
-          // Optional: just show a manual link for user to click if auto-redirect fails
-          document.getElementById("manualLink").href = appURL;
-        } else {
-          document.body.innerHTML = "<h2>Missing client_id in URL</h2>";
-        }
+        setTimeout(redirectToApp, 100);
       };
     </script>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        padding: 40px;
+      }
+    </style>
   </head>
   <body>
-    <h2>Redirecting you back to the app...</h2>
-    <p>If nothing happens, <a id="manualLink" href="#">click here</a>.</p>
+    <h2>Opening the app...</h2>
+    <p>If nothing happens, <a href="surepass_digiboost://aadhaar-callback">click here to continue</a>.</p>
   </body>
 </html>
